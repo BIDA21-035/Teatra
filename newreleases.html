@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <style>
+        *{
+    margin:0;
+}
+
+.body {
+    font-family: arial, sans-serif;
+    color: white;
+    width: 100%;
+  }
+
+  .navbar{
+    display:flex;
+    align-items: center;
+    padding:20px;
+ }
+
+ 
+ nav{
+    flex:1;
+    text-align: right;
+ }
+ 
+ nav ul{
+    display: inline-block;
+    list-style-type:none;
+ }
+ 
+ nav ul li{
+    display: inline-block;
+    margin-right: 20px;
+ }
+
+ a{
+    text-decoration:none;
+    color:white;
+ }
+
+ .container{
+    max-width: 100%;
+    margin:0;
+    padding-left: 25px;
+    padding-right:25px;
+    background:rgb(0, 0, 0);
+    color:white;
+ }
+  .movie-list-container {
+    padding-top: 0px;
+    padding-right: 20px;
+    padding-left:20px;
+    background: rgb(27, 27, 27);
+    align-items: center;
+  }
+  
+  .movie-list-wrapper {
+    position: relative;
+    padding-bottom: 25px;
+  }
+  
+  .movie-list-title-1 {
+    padding-top: 25px;
+    padding-bottom: 10px;
+    color:white;
+    background-color: #333;
+  }
+
+  .movie-list-title {
+    color:white;
+ }
+ .movie-list {
+    display: flex;
+    align-items: center;
+    height: 400px;
+    transform: translateX(0);
+    transition: all 1s ease-in-out;
+    width:100%;
+  }
+  
+  .movie-list-item {
+    margin-top: 10px;
+    margin-right: 30px;
+    position: relative;
+  }
+  
+  .movie-list-item:hover .movie-list-item-img {
+    transform: scale(1.2);
+    margin: 0 30px;
+    opacity: 0.5;
+  }
+  
+  .movie-list-item:hover .movie-list-item-title,
+  .movie-list-item:hover .movie-list-item-desc,
+  .movie-list-item:hover .movie-list-item-button {
+    opacity: 1;
+  }
+  
+  .movie-list-item-img {
+    transition: all 1s ease-in-out;
+    width: 270px;
+    height: 300px;
+    object-fit: fill;
+    border-radius: 20px;
+  }
+  
+  
+  .movie-list-item-title {
+    background-color: #333;
+    color: white;
+    padding: 0 10px;
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    top: 10%;
+    left: 50px;
+    opacity: 0;
+    transition: 1s all ease-in-out;
+  }
+  
+  .movie-list-item-desc {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    position: absolute;
+    top: 30%;
+    left: 50px;
+    width: 230px;
+    opacity: 0;
+    transition: 1s all ease-in-out;
+  }
+  .movie-desc{
+     padding-top: 30px;
+     color: white;
+  }
+
+  button {
+  background-color: lawngreen;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+ }
+
+  .header{
+   background: radial-gradient(#808080,#000000);
+   padding: 25px;
+ }
+
+ .header-row{
+   margin-top: 70px;
+   color:white;
+ }
+
+  .row{
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   color:white;
+ }
+
+  .col-2{
+   flex-basis: 50%;
+   min-width:300px;
+ }
+
+ .col-2 img{
+   max-width: 100%;
+   padding:50px 0;
+ }
+
+ .col-2 h1{
+   font-size:50px;
+   line-height: 60px;
+   margin: 25px 0;
+ }
+
+ table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+ }
+
+ td, th {
+  text-align: left;
+  padding: 8px;
+ }
+ 
+ .menu-icon{
+  width: 25px;
+  display: none;
+  margin-left: 20px;
+ }
+
+ /*-----------------media query for menu ----------*/
+ @media only screen and (max-width:800px){
+ .body{
+     overflow: hidden;
+ }
+ nav ul{
+    position:absolute;
+    top:70px;
+    left:0;
+    background: #333;
+    width:100%;
+    overflow: hidden;
+    transition: max-height 0.5s;
+ }
+
+ nav ul li{
+    display: block;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+ }
+
+ nav ul li a {
+    color: white;
+ }
+
+ .menu-icon{
+    display: block;
+    cursor: pointer;
+ }
+ }
+
+ /*----------media query for less than 600 screen size-------*/
+ @media only screen and (max-width:600px){
+  .row{
+     text-align: center;
+  }
+  .col-2,.movie-list-container{
+     flex-basis:100%;
+  }
+ }
+    </style>
+    <title>Upcoming</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="teatra-logos_white.png" width="110px">
+            </div>
+            <h1>Teatra Cinemas</h1>
+            <nav>
+                <ul id="MenuItems">
+                  <li><a href="TeatroCinemas.html">Home</a></li>
+                  <li><a href="moviesT.html">Movies</a></li>
+                  <li><a href="categories.html">Categories</a></li>
+                  <li><a href="newreleases.html">New Releases</a></li>
+                  <li><a href="formie.html">Feedback</a></li>   
+                </ul>
+            </nav>
+            <img src="menu8.PNG" class="menu-icon" onclick="menutoggle()">
+       </div>
+    </div>
+     <div class="content-container">
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">COMING SOON!!</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="wak.jpg">
+                            <span class="movie-list-item-title">2. Black Panther: Wakanda Forever</span>
+                            <p class="movie-list-item-desc">On the eve of Y2K, orphaned 12-year-old Beverly discovers a broken mixtape crafted by her teen parents. Raised by her grandmother (Julie Bowen) Beverly sees the mixtape as a chance to finally learn more about her parents
+                            </p>
+                            <div class="movie-desc">
+                                <p><strong>Genre:</strong> 
+                                Action, Comedy, Adventure            
+                                </p>
+                                <p><strong>Duration:</strong> 
+                                1hr 33min           
+                                </p>
+                                <p><strong>Age Restriction:</strong> 
+                                PG 10            
+                                </p>
+                                <p><strong>Directors:</strong>Ryan Coogler 
+                                </p>
+                          </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="thor.jpg">
+                            <span class="movie-list-item-title">Thor: Love and Thunder</span>
+                            <p class="movie-list-item-desc">Thor enlists the help of Valkyrie, Korg and ex-girlfriend Jane Foster to fight Gorr the God Butcher, who intends to make the gods extinct.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Action, Adventure ,fantasy           
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1hr 40min            
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong> Taika Waititi
+                                    </p>
+                              </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="hallo.jpg">
+                            <span class="movie-list-item-title">Halloween Ends</span>
+                            <p class="movie-list-item-desc">TThe saga of Michael Myers and Laurie Strode comes to a spine-chilling climax in this final installment of the franchise.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                        Horror, Thriller           
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1h 34min           
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    18           
+                                    </p>
+                                    <p><strong>Directors:</strong> David Gordon Green
+                                    </p>
+                              </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="bat.jpg" >
+                            <span class="movie-list-item-title">The Batman</span>
+                            <p class="movie-list-item-desc">When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption and question his family's involvement.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Drama           
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    2hr 7min            
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong> Matt Reeves 
+                                    </p>
+                              </div>
+                            </div>
+                </div>
+            </div>
+            </div>
+        </div>
+<footer>
+    <table>
+        <tr>
+            <th>More Links</th>
+            <th>Socials</th>
+            <th>Reach Us</th>
+        </tr>
+        <tr>
+            <td>Sponsors</td>
+            <td>Facebook</td>
+            <td>Location:22,Lorem ipsum dolor, consectetur, adipisicing</td>
+        </tr>
+        <tr>
+            <td>Help</td>
+            <td>Twitter</td>
+            <td>Phone Number: 123(45678)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Instagram</td>
+            <td>Email: Teatra@gmail.com</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Whattsapp</td>
+            <td></td>
+        </tr>
+    </table>
+</footer>
+<!-----------------------js for toggle menu---------->
+<script>
+    var MenuItems= document.getElementById("MenuItems");
+
+    MenuItems.style.maxHeight="0px";
+
+    function menutoggle(){
+        if(MenuItems.style.maxHeight=="0px")
+            {
+                MenuItems.style.maxHeight="200px"
+            }
+
+       else {
+           MenuItems.style.maxHeight="0px";
+       }
+    }
+</script>
+</body>
+</html>

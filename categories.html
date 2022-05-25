@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial scale=1.0">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Sen:wght@400;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <style>
+        *{
+    margin:0;
+}
+
+.body {
+    font-family: arial, sans-serif;
+    color: white;
+    width: 100%;
+  }
+
+  .navbar{
+    display:flex;
+    align-items: center;
+    padding:20px;
+ }
+
+ 
+ nav{
+    flex:1;
+    text-align: right;
+ }
+ 
+ nav ul{
+    display: inline-block;
+    list-style-type:none;
+ }
+ 
+ nav ul li{
+    display: inline-block;
+    margin-right: 20px;
+ }
+
+ a{
+    text-decoration:none;
+    color:white;
+ }
+
+  .movie-list-container {
+    padding-top: 0px;
+    padding-right: 20px;
+    padding-left:20px;
+    background: rgb(27, 27, 27);
+    align-items: center;
+  }
+  
+  .movie-list-wrapper {
+    position: relative;
+    padding-bottom: 25px;
+  }
+  
+  .movie-list-title-1 {
+    padding-top: 25px;
+    color:white;
+  }
+
+  .movie-list-title {
+    color:white;
+ }
+  .movie-list {
+    display: flex;
+    align-items: center;
+    height: 500px;
+    transform: translateX(0);
+    transition: all 1s ease-in-out;
+  }
+  
+  .movie-list-item {
+    position: relative;
+    width:25%;
+  }
+
+  .movie-list-item:hover .movie-list-item-img {
+    transform: scale(1.2);
+    margin: 0 30px;
+    opacity: 0.5;
+  }
+  
+  .movie-list-item:hover .movie-list-item-title,
+  .movie-list-item:hover .movie-list-item-desc,
+  .movie-list-item:hover .movie-list-item-button {
+    opacity: 1;
+  }
+  
+  .movie-list-item-img {
+    transition: all 1s ease-in-out;
+    width: 270px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 20px;
+    padding-top: 10px;
+  }
+  
+  .container{
+    max-width: 100%;
+    margin:0;
+    padding-left: 25px;
+    padding-right:25px;
+    background: black;
+    color:white;
+ }
+  
+  .movie-list-item-title {
+    background-color: #333;
+    color: white;
+    padding: 0 10px;
+    font-size: 32px;
+    font-weight: bold;
+    position: absolute;
+    top: 10%;
+    left: 50px;
+    opacity: 0;
+    transition: 1s all ease-in-out;
+  }
+  
+  .movie-list-item-desc {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    position: absolute;
+    top: 30%;
+    left: 50px;
+    width: 230px;
+    opacity: 0;
+    transition: 1s all ease-in-out;
+  }
+  .movie-desc{
+     padding-top: 30px;
+     color: white;
+  }
+
+  button {
+  background-color: lawngreen;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+ }
+
+  .header{
+   background: radial-gradient(#808080,#000000);
+   padding: 25px;
+ }
+
+ .header-row{
+   margin-top: 70px;
+   color:white;
+ }
+
+  .row{
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   justify-content: space-around;
+   color:white;
+ }
+
+  .col-2{
+   flex-basis: 50%;
+   min-width:300px;
+ }
+
+ .col-2 img{
+   max-width: 100%;
+   padding:50px 0;
+ }
+
+ .col-2 h1{
+   font-size:50px;
+   line-height: 60px;
+   margin: 25px 0;
+ }
+
+ table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+ }
+
+ td, th {
+  text-align: left;
+  padding: 8px;
+ }
+ 
+ .menu-icon{
+  width: 25px;
+  display: none;
+  margin-left: 20px;
+ }
+
+ /*-----------------media query for menu ----------*/
+ @media only screen and (max-width:800px){
+ .body{
+     overflow: hidden;
+ }
+ nav ul{
+    position:absolute;
+    top:70px;
+    left:0;
+    background: #333;
+    width:100%;
+    overflow: hidden;
+    transition: max-height 0.5s;
+ }
+
+ nav ul li{
+    display: block;
+    margin-right: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+ }
+
+ nav ul li a {
+    color: white;
+ }
+
+ .menu-icon{
+    display: block;
+    cursor: pointer;
+ }
+ }
+
+ /*----------media query for less than 600 screen size-------*/
+ @media only screen and (max-width:600px){
+  .row{
+     text-align: center;
+  }
+  .col-2,.movie-list-container{
+     flex-basis:100%;
+  }
+ }
+    </style>
+    <title>Categories</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="teatra-logos_white.png" width="110px">
+            </div>
+            <h1>Teatra Cinemas</h1>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="TeatroCinemas.html">Home</a></li>
+                    <li><a href="drama.html">Drama</a></li>
+                    <li><a href="romance.html">Romance</a></li>
+                    <li><a href="action.html">Action</a></li>
+                    <li><a href="comedy.html">Comedy</a></li>
+                    <li><a href="animation.html">Animation</a></li>    
+                </ul>
+            </nav>
+            <img src="menu8.PNG" class="menu-icon" onclick="menutoggle()">
+       </div>
+    </div>
+    </div>
+     <div class="content-container">
+            <div class="movie-list-container">
+                <h1 class="movie-list-title-1">DRAMA</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="mixi.jpg">
+                            <span class="movie-list-item-title">Mixtape</span>
+                            <p class="movie-list-item-desc">On the eve of Y2K, orphaned 12-year-old Beverly discovers a broken mixtape crafted by her teen parents. Raised by her grandmother (Julie Bowen) Beverly sees the mixtape as a chance to finally learn more about her parents
+                            </p>
+                            <div class="movie-desc">
+                                <p><strong>Genre:</strong> 
+                                Action, Comedy, Adventure            
+                                </p>
+                                <p><strong>Duration:</strong> 
+                                1hr 33min           
+                                </p>
+                                <p><strong>Showing Times:</strong> 
+                                <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                </p>
+                                <p><strong>Age Restriction:</strong> 
+                                PG 10            
+                                </p>
+                                <p><strong>Directors:</strong>
+                                    Julie Bowen, Gemma Brooke Allen
+                                </p>
+                          </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="hoho.jpg">
+                            <span class="movie-list-item-title">Home</span>
+                            <p class="movie-list-item-desc">An ex felon returns home from 
+                                prison and must confront the demons of his past.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Drama           
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1hr 40min            
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong> Franka Potente
+                                    </p>
+                              </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="second.jpg">
+                            <span class="movie-list-item-title">The second</span>
+                            <p class="movie-list-item-desc">The persona of a celebrated author is threatened when her best friend and muse reveals the dark secret behind her first novel's provenance, igniting an incendiary tale of sex, lies and betrayal.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Drama           
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1h 34min           
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    18           
+                                    </p>
+                                    <p><strong>Directors:</strong> Mairi Cameron
+                                    </p>
+                              </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="bendetta.jpg" >
+                            <span class="movie-list-item-title">Benedetta</span>
+                            <p class="movie-list-item-desc">A 17th-century nun becomes entangled in a forbidden lesbian affair with a novice. But it is Benedetta's shocking religious visions that threaten to shake the Church to its core.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Drama           
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    2hr 7min            
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    16            
+                                    </p>
+                                    <p><strong>Directors:</strong> Paul Verhoeven
+                                    </p>
+                              </div>
+                            </div>
+                </div>
+            </div>
+                    <button><a href="drama.html">VIEW MORE OF THE GENRE</a></button>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">ROMANCE</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="super.jpg">
+                            <span class="movie-list-item-title">SUPERNOVA </span>
+                            <p class="movie-list-item-desc">Led by moving performances from Colin Firth and Stanley Tucci, Supernova is a heartbreaking look at the emotional toll that comes with accepting mortality.</p>
+                                <div class="movie-desc">
+                                     <p><strong>Genre:</strong> 
+                                     Action, Comedy, Adventure            
+                                     </p>
+                                     <p><strong>Duration:</strong> 
+                                     1h 52min            
+                                     </p>
+                                     <p><strong>Showing Times:</strong> 
+                                     <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                     </p>
+                                     <p><strong>Age Restriction:</strong> 
+                                     PG-13            
+                                     </p>
+                                     <p><strong>Directors:</strong>
+                                     </p>
+                               </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="i.jpg">
+                           <span class="movie-list-item-title">I CARRY YOU WITH ME</span>
+                           <p class="movie-list-item-desc">A remarkable feature debut for director Heidi Ewing, I Carry You with Me finds universally resonant themes in a specific, richly detailed time and place.</p>
+                            <div class="movie-desc">
+                                <p><strong>Genre:</strong> 
+                                Action, Comedy, Adventure            
+                                </p>
+                                <p><strong>Duration:</strong> 
+                                1h 52min            
+                                </p>
+                                <p><strong>Showing Times:</strong> 
+                                <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                </p>
+                                <p><strong>Age Restriction:</strong> 
+                                PG-13            
+                                </p>
+                                <p><strong>Directors:</strong>
+                                </p>
+                          </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="your.jpg">
+                         <span class="movie-list-item-title">Im Your Man</span>
+                         <p class="movie-list-item-desc">With a thought-provoking concept brought to humorous life by a pair of well-matched leads, I'm Your Man is an AI rom-com whose intelligence is anything but artificial.
+                                </p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Action, Comedy, Adventure            
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1h 52min            
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong>
+                                    </p>
+                              </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="two.jpg">
+                          <span class="movie-list-item-title">The Two Of Us</span>
+                        <p class="movie-list-item-desc">A remarkable feature debut for director/co-writer Filippo Meneghetti, Two of Us tells a deceptively complex love story while presenting a rich acting showcase for its three leads.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Action, Comedy, Adventure            
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1h 52min            
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong>
+                                    </p>
+                              </div>
+                        </div>
+                    </div>
+                    <button><a href="romance.html">VIEW MORE OF THE GENRE</a></button>
+                </div>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">ACTION</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="sq.png">
+            <span class="movie-list-item-title">The Suicide Squad</span>
+            <p class="movie-list-item-desc">Supervillains Harley Quinn, Bloodsport, Peacemaker, and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.</p>
+                                <div class="movie-desc">
+                                     <p><strong>Genre:</strong> 
+                                     Action, Comedy, Adventure            
+                                     </p>
+                                     <p><strong>Duration:</strong> 
+                                     1h 52min            
+                                     </p>
+                                     <p><strong>Showing Times:</strong> 
+                                     <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                     </p>
+                                     <p><strong>Age Restriction:</strong> 
+                                     PG-13            
+                                     </p>
+                                     <p><strong>Directors:</strong>
+                                     </p>
+                               </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="sc.jpg">
+                            <span class="movie-list-item-title">Shadow in the Cloud</span>
+                            <p class="movie-list-item-desc">A female WWII pilot traveling with top secret documents on a B-17 Flying Fortress encounters an evil presence on board the flight</p>
+                            <div class="movie-desc">
+                                <p><strong>Genre:</strong> 
+                                Action, Comedy, Adventure            
+                                </p>
+                                <p><strong>Duration:</strong> 
+                                1h 52min            
+                                </p>
+                                <p><strong>Showing Times:</strong> 
+                                <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                </p>
+                                <p><strong>Age Restriction:</strong> 
+                                PG-13            
+                                </p>
+                                <p><strong>Directors:</strong>
+                                </p>
+                          </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="nt.jpg">
+                                 <span class="movie-list-item-title">No Time To Die</span>
+                                <p class="movie-list-item-desc">James Bond has left active service. His peace is short-lived when Felix Leiter, an old friend from the CIA, turns up asking for help, leading Bond onto the trail of a mysterious villain armed with dangerous new technology..</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Action, Comedy, Adventure            
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1h 52min            
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong>
+                                    </p>
+                              </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="nobody.jpg">
+                               <span class="movie-list-item-title">Nobody</span>
+                               <p class="movie-list-item-desc">A docile family man slowly reveals his true character after his house gets burgled by two petty thieves, which, coincidentally, leads him into a bloody war with a Russian crime boss.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Action, Comedy, Adventure            
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1h 52min            
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong>
+                                    </p>
+                              </div>
+                        </div>
+                    </div>
+                    <button><a href="action.html">VIEW MORE OF THE GENRE</a></button>
+                </div>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">ANIMATION</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="mitch.jpg">
+                            <span class="movie-list-item-title">The Mitchells vs the Machines</span>
+                            <p class="movie-list-item-desc">A quirky, dysfunctional family's road trip is upended when they find themselves in the middle of the robot apocalypse and suddenly become humanity's unlikeliest last hope.</p>
+                                <div class="movie-desc">
+                                     <p><strong>Genre:</strong> 
+                                     Action, Comedy, Adventure            
+                                     </p>
+                                     <p><strong>Duration:</strong> 
+                                     1h 52min            
+                                     </p>
+                                     <p><strong>Showing Times:</strong> 
+                                     <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                     </p>
+                                     <p><strong>Age Restriction:</strong> 
+                                     PG-13            
+                                     </p>
+                                     <p><strong>Directors:</strong>
+                                     </p>
+                               </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="luca.jpg">
+                            <span class="movie-list-item-title">Luca</span>
+                            <p class="movie-list-item-desc">On the Italian Riviera, an unlikely but strong friendship grows between a human being and a sea monster disguised as a human
+                            </p>
+                            <div class="movie-desc">
+                                <p><strong>Genre:</strong> 
+                                Action, Comedy, Adventure            
+                                </p>
+                                <p><strong>Duration:</strong> 
+                                1h 52min            
+                                </p>
+                                <p><strong>Showing Times:</strong> 
+                                <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                </p>
+                                <p><strong>Age Restriction:</strong> 
+                                PG-13            
+                                </p>
+                                <p><strong>Directors:</strong>
+                                </p>
+                          </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="anto.jpg">
+                            <span class="movie-list-item-title">Encanto</span>
+                            <p class="movie-list-item-desc">A Colombian teenage girl has to face the frustration of being the only member of her family without magical powers.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Action, Comedy, Adventure            
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1h 52min            
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong>
+                                    </p>
+                              </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="raya.jpg">
+                            <span class="movie-list-item-title">Raya and the Last Dragon </span>
+                            <p class="movie-list-item-desc">In a realm known as Kumandra, a re-imagined Earth inhabited by an ancient civilization, a warrior named Raya is determined to find the last dragon.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Action, Comedy, Adventure            
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1h 52min            
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong>
+                                    </p>
+                              </div>
+                        </div>
+                    </div>
+                    <button><a href="animation.html">VIEW MORE OF THE GENRE</a></button>
+                </div>
+            </div>
+            <div class="movie-list-container">
+                <h1 class="movie-list-title">COMEDY</h1>
+                <div class="movie-list-wrapper">
+                    <div class="movie-list">
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="frie.jpg">
+                            <span class="movie-list-item-title">Vacation Friends</span>
+                            <p class="movie-list-item-desc">An uptight couple makes friends with a rowdy couple while on vacation in Mexico, but their friendship takes an awkward turn when they get back home.</p>
+                                <div class="movie-desc">
+                                     <p><strong>Genre:</strong> 
+                                     Action, Comedy, Adventure            
+                                     </p>
+                                     <p><strong>Duration:</strong> 
+                                     1h 52min            
+                                     </p>
+                                     <p><strong>Showing Times:</strong> 
+                                     <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                     </p>
+                                     <p><strong>Age Restriction:</strong> 
+                                     PG-13            
+                                     </p>
+                                     <p><strong>Directors:</strong>
+                                     </p>
+                               </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="dont.jpg">
+                            <span class="movie-list-item-title"> Don't Look Up</span>
+                            <p class="movie-list-item-desc"> Two low-level astronomers must go on a giant media tour to warn mankind of an approaching comet that will destroy planet Earth.
+                            </p>
+                            <div class="movie-desc">
+                                <p><strong>Genre:</strong> 
+                                Action, Comedy, Adventure            
+                                </p>
+                                <p><strong>Duration:</strong> 
+                                1h 52min            
+                                </p>
+                                <p><strong>Showing Times:</strong> 
+                                <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                </p>
+                                <p><strong>Age Restriction:</strong> 
+                                PG-13            
+                                </p>
+                                <p><strong>Directors:</strong>
+                                </p>
+                          </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="bad.jpg">
+                            <span class="movie-list-item-title"> Bad Trip</span>
+                            <p class="movie-list-item-desc">This mix of a scripted buddy comedy road movie and a real hidden camera prank show follows the outrageous misadventures of two buds stuck in a rut who embark on a cross-country road trip to NYC. The storyline sets up shocking real pranks.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Action, Comedy, Adventure            
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1h 52min            
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong>
+                                    </p>
+                              </div>
+                        </div>
+                        <div class="movie-list-item">
+                            <img class="movie-list-item-img" src="free.jpg">
+                            <span class="movie-list-item-title"> Free Guy</span>
+                            <p class="movie-list-item-desc">A bank teller discovers that he's actually an NPC inside a brutal, open world video game.</p>
+                                <div class="movie-desc">
+                                    <p><strong>Genre:</strong> 
+                                    Action, Comedy, Adventure            
+                                    </p>
+                                    <p><strong>Duration:</strong> 
+                                    1h 52min            
+                                    </p>
+                                    <p><strong>Showing Times:</strong> 
+                                    <strong class="text-danger">Fri 22nd Apr 2022</strong>
+                                    </p>
+                                    <p><strong>Age Restriction:</strong> 
+                                    PG-13            
+                                    </p>
+                                    <p><strong>Directors:</strong>
+                                    </p>
+                              </div>
+                        </div>
+                            </div>
+                    </div>
+                    <button><a href="comedy.html">VIEW MORE OF THE GENRE</a></button>
+                </div>
+        </div>
+<footer>
+    <table>
+        <tr>
+            <th>More Links</th>
+            <th>Socials</th>
+            <th>Reach Us</th>
+        </tr>
+        <tr>
+            <td>Sponsors</td>
+            <td>Facebook</td>
+            <td>Location:22,Lorem ipsum dolor, consectetur, adipisicing</td>
+        </tr>
+        <tr>
+            <td>Help</td>
+            <td>Twitter</td>
+            <td>Phone Number: 123(45678)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Instagram</td>
+            <td>Email: Teatra@gmail.com</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Whattsapp</td>
+            <td></td>
+        </tr>
+    </table>
+</footer>
+<!-----------------------js for toggle menu---------->
+<script>
+    var MenuItems= document.getElementById("MenuItems");
+
+    MenuItems.style.maxHeight="0px";
+
+    function menutoggle(){
+        if(MenuItems.style.maxHeight=="0px")
+            {
+                MenuItems.style.maxHeight="200px"
+            }
+
+       else {
+           MenuItems.style.maxHeight="0px";
+       }
+    }
+</script>
+</body>
+</html>
